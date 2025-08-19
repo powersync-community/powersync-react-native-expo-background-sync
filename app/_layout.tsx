@@ -9,7 +9,7 @@ import { useSystem } from '@/powersync/system';
 import { useMemo, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import * as Notifications from 'expo-notifications';
-import { registerBackgroundTaskAsync, setupNotificationHandler } from '@/powersync/BackgroundSync';
+import { registerBackgroundTask } from '@/powersync/BackgroundSync';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -22,11 +22,8 @@ export default function RootLayout() {
   }, [system]);
 
   useEffect(() => {
-    // This handler must be set up before any notifications are received.
-    setupNotificationHandler();
-
-    // Register the background fetch task.
-    registerBackgroundTaskAsync();
+    // Register the background sync task that is triggered by a silent notification.
+    registerBackgroundTask();
 
     // Request notification permissions for iOS.
     async function requestPermissions() {

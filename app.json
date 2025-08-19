@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.powersyncreactnativebackgroundsync"
+      "bundleIdentifier": "com.anonymous.powersyncreactnativebackgroundsync",
+      "backgroundModes": ["processing"]
     },
     "android": {
       "adaptiveIcon": {
@@ -34,6 +35,12 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "enableBackgroundRemoteNotifications": true
         }
       ]
     ],

@@ -45,6 +45,10 @@ export class System {
             }
         });
     }
+
+    async disconnect() {
+        await this.powersync.disconnect();
+    }
 }
 
 export const system = new System();
