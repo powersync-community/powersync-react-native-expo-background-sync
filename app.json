@@ -11,7 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.powersyncreactnativebackgroundsync",
-      "backgroundModes": ["processing"]
+      "backgroundModes": ["processing"],
+      "infoPlist": {
+        "UIBackgroundModes": ["fetch", "remote-notification"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +22,9 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.powersyncreactnativebackgroundsync"
+      "package": "com.anonymous.powersyncreactnativebackgroundsync",
+      "usesCleartextTraffic": true,
+      "permissions": ["WAKE_LOCK", "RECEIVE_BOOT_COMPLETED"]
     },
     "web": {
       "bundler": "metro",

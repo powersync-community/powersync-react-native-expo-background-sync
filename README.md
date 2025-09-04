@@ -3,6 +3,7 @@
 To be able to use background push notifications on iOS, the remote-notification value needs to be present in the UIBackgroundModes array in your app's Info.plist file.
 
 in app.json:
+
 ```json
 [
   "expo-notifications",
@@ -13,3 +14,6 @@ in app.json:
 ```
 
 and "backgroundModes": ["processing"]
+
+"usesCleartextTraffic": true,
+"permissions": ["WAKE_LOCK", "RECEIVE_BOOT_COMPLETED"]

@@ -13,9 +13,9 @@ export class System {
     powersync: PowerSyncDatabase;
 
     constructor() {
-        this.connector = new SupabaseConnector(this);
+        this.connector = new SupabaseConnector();
         const opSqlite = new OPSqliteOpenFactory({
-            dbFilename: 'powersync55226652.db'
+            dbFilename: 'dev.db'
         });
 
         this.powersync = new PowerSyncDatabase({
@@ -34,15 +34,27 @@ export class System {
             clientImplementation: SyncClientImplementation.RUST,
         });
 
-        const l = this.powersync.registerListener({
-            initialized: () => { },
-            statusChanged: (status) => {
-                console.log('PowerSync status changed:', status);
+        await new Promise<void>((resolve) => {
+            const unregister = this.powersync.registerListener({
+                statusChanged: (status) => {
+                    const hasSynced = Boolean(status.lastSyncedAt);
+                    const downloading = status.dataFlowStatus?.downloading || false;
+                    const uploading = status.dataFlowStatus?.uploading || false;
+                    console.log(
+                        '[PowerSync] Status changed:',
+                        hasSynced ? '✅ Synced' : '⏳ Not yet synced',
+                        downloading ? '📥 Downloading' : '✅ Not downloading',
+                        uploading ? '📤 Uploading' : '✅ Not uploading'
+                    );
 
-                // if (status!.downloadProgress?.downloadedFraction == 1 && status!.dataFlowStatus!.downloading) {
-                //     console.log("Something weird is happening!", JSON.stringify(status, null, 2));
-                // }
-            }
+                    // Resolve when initial sync is complete
+                    if (hasSynced && !uploading) {
+                        console.log('[PowerSync] Sync complete ✅');
+                        resolve();
+                        unregister();
+                    }
+                },
+            });
         });
     }
 

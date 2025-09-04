@@ -1,8 +1,27 @@
 import { LIST_TABLE, ListRecord, TODO_TABLE } from '@/powersync/AppSchema';
+import { registerBackgroundTaskAsync } from '@/powersync/BackgroundSync';
 import { useSystem } from '@/powersync/system';
 import { useQuery, useStatus } from '@powersync/react-native';
 import React, { useEffect } from 'react';
-import { Button, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import * as BackgroundTask from "expo-background-task";
+import * as TaskManager from "expo-task-manager"
+import { initializeBackgroundTask } from '../utils';
+
+TaskManager.getRegisteredTasksAsync().then((tasks) => {
+  console.log(tasks);
+});
+
+// Declare a variable to store the resolver function
+let resolver: (() => void) | null;
+
+// Create a promise and store its resolve function for later
+const promise = new Promise<void>((resolve) => {
+  resolver = resolve;
+});
+
+// Pass the promise to the background task, it will wait until the promise resolves
+initializeBackgroundTask(promise);
 
 const description = (total: number, completed: number = 0) => {
   return `${total - completed} pending, ${completed} completed`;
@@ -26,8 +45,16 @@ export default function HomeScreen() {
     LEFT JOIN ${TODO_TABLE}
       ON  ${LIST_TABLE}.id = ${TODO_TABLE}.list_id
     GROUP BY
-      ${LIST_TABLE}.id;
+      ${LIST_TABLE}.id
+    ORDER BY ${LIST_TABLE}.created_at DESC;
   `);
+
+  const insertList = async () => {
+    await system.powersync.execute(`
+      INSERT INTO ${LIST_TABLE} (id, name, owner_id)
+      VALUES (uuid(), 'New List', ?);
+    `, [await system.connector.userId()]);
+  };
 
   // console.log("List Records:", listRecords);
 
@@ -44,9 +71,21 @@ export default function HomeScreen() {
           Todo Counts Per List
         </Text>
 
+        <View>
+          <TouchableOpacity style={{
+            backgroundColor: '#007AFF',
+            padding: 15,
+            borderRadius: 8,
+            marginBottom: 20,
+            alignItems: 'center'
+          }} onPress={insertList}>
+            <Text style={{ color: '#fff', fontWeight: 'bold' }}>Insert List</Text>
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
-          onPress={() => {
-            system.powersync.disconnectAndClear();
+          onPress={async () => {
+            await system.powersync.disconnectAndClear();
           }}
           style={{
             backgroundColor: '#007AFF',
@@ -92,7 +131,7 @@ export default function HomeScreen() {
                 Downloaded {downloadProgress.downloadedOperations} out of {downloadProgress.totalOperations}
               </Text>
             )}
-            
+
             {/* Progress Bar */}
             {downloadProgress && downloadProgress.totalOperations > 0 && (
               <View style={{

@@ -1,7 +1,8 @@
 import { AbstractPowerSyncDatabase, CrudEntry, PowerSyncBackendConnector, UpdateType, type PowerSyncCredentials } from '@powersync/react-native';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { AppConfig } from '@/supabase/AppConfig';
-import { System } from '@/powersync/system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 /// Postgres Response codes that we cannot recover from by retrying.
 const FATAL_RESPONSE_CODES = [
@@ -15,13 +16,33 @@ const FATAL_RESPONSE_CODES = [
   new RegExp('^42501$')
 ];
 
+async function axiosFetcher(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+  const res = await axios({
+    url: typeof input === "string" ? input : input.toString(),
+    method: init?.method as any,
+    headers: init?.headers as any,
+    data: init?.body,
+    validateStatus: () => true,
+  });
+  return new Response(
+    typeof res.data === "string" ? res.data : JSON.stringify(res.data),
+    {
+      status: res.status,
+      headers: res.headers as any,
+    }
+  );
+}
+
 export class SupabaseConnector implements PowerSyncBackendConnector {
   client: SupabaseClient;
 
-  constructor(protected system: System) {
+  constructor() {
     this.client = createClient(AppConfig.supabaseUrl!, AppConfig.supabaseAnonKey!, {
       auth: {
         persistSession: true
+      },
+      global: {
+        fetch: axiosFetcher
       }
     });
   }
@@ -38,11 +59,13 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
   }
 
   async signInAnonymously() {
-    const { error } = await this.client.auth.signInAnonymously();
+    const { data, error } = await this.client.auth.signInAnonymously();
 
     if (error) {
       throw error;
     }
+
+    return this.userId();
   }
 
   async userId() {
