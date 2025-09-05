@@ -31,7 +31,7 @@ export class System {
         await this.powersync.init();
 
         await this.powersync.connect(this.connector, {
-            clientImplementation: SyncClientImplementation.RUST,
+            clientImplementation: SyncClientImplementation.RUST
         });
 
         await new Promise<void>((resolve) => {

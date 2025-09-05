@@ -1,14 +1,13 @@
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { useSystem } from '@/powersync/System';
+import { PowerSyncContext } from '@powersync/react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { PowerSyncContext } from '@powersync/react-native';
-import { useSystem } from '@/powersync/system';
 import { useMemo } from 'react';
 import { SafeAreaView } from 'react-native';
-import 'cross-fetch/polyfill';
+import 'react-native-reanimated';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -17,6 +16,9 @@ export default function RootLayout() {
   });
   const system = useSystem();
   const db = useMemo(() => {
+    if(!system.powersync.connected){
+      system.init();
+    }
     return system.powersync;
   }, [system]);
 

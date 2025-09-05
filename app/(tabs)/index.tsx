@@ -1,15 +1,14 @@
 import { LIST_TABLE, ListRecord, TODO_TABLE } from '@/powersync/AppSchema';
-import { registerBackgroundTaskAsync } from '@/powersync/BackgroundSync';
-import { useSystem } from '@/powersync/system';
+import { useSystem } from '@/powersync/System';
 import { useQuery, useStatus } from '@powersync/react-native';
+import * as TaskManager from "expo-task-manager";
 import React, { useEffect } from 'react';
-import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Button, FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { initializeBackgroundTask } from '../../utils';
 import * as BackgroundTask from "expo-background-task";
-import * as TaskManager from "expo-task-manager"
-import { initializeBackgroundTask } from '../utils';
 
 TaskManager.getRegisteredTasksAsync().then((tasks) => {
-  console.log(tasks);
+  console.log(tasks.length);
 });
 
 // Declare a variable to store the resolver function
@@ -32,7 +31,8 @@ export default function HomeScreen() {
   const status = useStatus();
 
   useEffect(() => {
-    system.init();
+    // system.init();
+    resolver?.();
   }, []);
 
   const { data: listRecords } = useQuery<ListRecord & { total_tasks: number; completed_tasks: number }>(`
@@ -49,12 +49,12 @@ export default function HomeScreen() {
     ORDER BY ${LIST_TABLE}.created_at DESC;
   `);
 
-  const insertList = async () => {
-    await system.powersync.execute(`
-      INSERT INTO ${LIST_TABLE} (id, name, owner_id)
-      VALUES (uuid(), 'New List', ?);
-    `, [await system.connector.userId()]);
-  };
+  // const insertList = async () => {
+  //   await system.powersync.execute(`
+  //     INSERT INTO ${LIST_TABLE} (id, name, owner_id)
+  //     VALUES (uuid(), 'New List', ?);
+  //   `, [await system.connector.userId()]);
+  // };
 
   // console.log("List Records:", listRecords);
 
@@ -71,7 +71,7 @@ export default function HomeScreen() {
           Todo Counts Per List
         </Text>
 
-        <View>
+        {/* <View>
           <TouchableOpacity style={{
             backgroundColor: '#007AFF',
             padding: 15,
@@ -81,6 +81,12 @@ export default function HomeScreen() {
           }} onPress={insertList}>
             <Text style={{ color: '#fff', fontWeight: 'bold' }}>Insert List</Text>
           </TouchableOpacity>
+        </View> */}
+
+        <View>
+          <Button title="Trigger BG Task" onPress={async () => {
+            await BackgroundTask.triggerTaskWorkerForTestingAsync();
+          }} />
         </View>
 
         <TouchableOpacity

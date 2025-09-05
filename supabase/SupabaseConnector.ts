@@ -1,7 +1,6 @@
 import { AbstractPowerSyncDatabase, CrudEntry, PowerSyncBackendConnector, UpdateType, type PowerSyncCredentials } from '@powersync/react-native';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { AppConfig } from '@/supabase/AppConfig';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 /// Postgres Response codes that we cannot recover from by retrying.
