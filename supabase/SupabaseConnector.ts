@@ -15,6 +15,7 @@ const FATAL_RESPONSE_CODES = [
   new RegExp('^42501$')
 ];
 
+// Override the default fetch function to use axios
 async function axiosFetcher(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
   const res = await axios({
     url: typeof input === "string" ? input : input.toString(),
@@ -41,6 +42,7 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
         persistSession: true
       },
       global: {
+        // Override the default fetch function to use axios
         fetch: axiosFetcher
       }
     });
@@ -58,7 +60,7 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
   }
 
   async signInAnonymously() {
-    const { data, error } = await this.client.auth.signInAnonymously();
+    const { error } = await this.client.auth.signInAnonymously();
 
     if (error) {
       throw error;

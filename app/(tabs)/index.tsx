@@ -22,41 +22,17 @@ const promise = new Promise<void>((resolve) => {
 // Pass the promise to the background task, it will wait until the promise resolves
 initializeBackgroundTask(promise);
 
-const description = (total: number, completed: number = 0) => {
-  return `${total - completed} pending, ${completed} completed`;
-};
-
 export default function HomeScreen() {
   const system = useSystem();
   const status = useStatus();
 
   useEffect(() => {
-    // system.init();
     resolver?.();
   }, []);
 
-  const { data: listRecords } = useQuery<ListRecord & { total_tasks: number; completed_tasks: number }>(`
-    SELECT
-      ${LIST_TABLE}.*, 
-      COUNT(${TODO_TABLE}.id) AS total_tasks, 
-      SUM(CASE WHEN ${TODO_TABLE}.completed = true THEN 1 ELSE 0 END) as completed_tasks
-    FROM
-      ${LIST_TABLE}
-    LEFT JOIN ${TODO_TABLE}
-      ON  ${LIST_TABLE}.id = ${TODO_TABLE}.list_id
-    GROUP BY
-      ${LIST_TABLE}.id
-    ORDER BY ${LIST_TABLE}.created_at DESC;
+  const { data: listRecords } = useQuery<ListRecord>(`
+    SELECT * FROM ${LIST_TABLE}
   `);
-
-  // const insertList = async () => {
-  //   await system.powersync.execute(`
-  //     INSERT INTO ${LIST_TABLE} (id, name, owner_id)
-  //     VALUES (uuid(), 'New List', ?);
-  //   `, [await system.connector.userId()]);
-  // };
-
-  // console.log("List Records:", listRecords);
 
   // Calculate sync percentage
   const downloadProgress = status.downloadProgress;
@@ -68,26 +44,8 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 20 }}>
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
-          Todo Counts Per List
+          Lists
         </Text>
-
-        {/* <View>
-          <TouchableOpacity style={{
-            backgroundColor: '#007AFF',
-            padding: 15,
-            borderRadius: 8,
-            marginBottom: 20,
-            alignItems: 'center'
-          }} onPress={insertList}>
-            <Text style={{ color: '#fff', fontWeight: 'bold' }}>Insert List</Text>
-          </TouchableOpacity>
-        </View> */}
-
-        <View>
-          <Button title="Trigger BG Task" onPress={async () => {
-            await BackgroundTask.triggerTaskWorkerForTestingAsync();
-          }} />
-        </View>
 
         <TouchableOpacity
           onPress={async () => {
@@ -175,9 +133,6 @@ export default function HomeScreen() {
             }}>
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333' }}>
                 {list.name}
-              </Text>
-              <Text style={{ fontSize: 14, color: '#666', marginTop: 8 }}>
-                {description(list.total_tasks ?? 0, list.completed_tasks ?? 0)}
               </Text>
             </View>
           )}
