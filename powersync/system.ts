@@ -1,5 +1,4 @@
 import React from 'react';
-import { OPSqliteOpenFactory } from '@powersync/op-sqlite';
 import { createBaseLogger, LogLevel, PowerSyncDatabase, SyncClientImplementation } from '@powersync/react-native';
 import { SupabaseConnector } from '@/supabase/SupabaseConnector';
 import { AppSchema } from '@/powersync/AppSchema';
@@ -14,13 +13,12 @@ export class System {
 
     constructor() {
         this.connector = new SupabaseConnector();
-        const opSqlite = new OPSqliteOpenFactory({
-            dbFilename: 'dev.db'
-        });
 
         this.powersync = new PowerSyncDatabase({
             schema: AppSchema,
-            database: opSqlite,
+            database: {
+                dbFilename: 'powersync.db'
+            },
             logger: logger
         });
     }
