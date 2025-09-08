@@ -8,28 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		32A3A4FE7A166F85B32D8FFE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EEFB5651B920A9E18FA6E2D6 /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		A6BAA1CB27A424B430CA0DFA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AE44090BB9E42D9E5627F0F2 /* PrivacyInfo.xcprivacy */; };
+		B9439DA7A35AFD6D42623EB2 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798ECF48897B9ACD8D1E450 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		D2260B6C8FA8EDA7221DC597 /* libPods-powersyncreactnativebackgroundsync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AADA4054C59FD2D2A0F03AD /* libPods-powersyncreactnativebackgroundsync.a */; };
-		EF3AF2DA4D1C3A88B86DA302 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54659E9A9FFBE31A112A3F3 /* ExpoModulesProvider.swift */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		F901F17D1F08BF0681DE62ED /* libPods-powersyncreactnativebackgroundsync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC59A7178217E7FD760454E /* libPods-powersyncreactnativebackgroundsync.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		06C560BD797355174D295399 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powersyncreactnativebackgroundsync.release.xcconfig"; path = "Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* powersyncreactnativebackgroundsync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powersyncreactnativebackgroundsync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = powersyncreactnativebackgroundsync/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = powersyncreactnativebackgroundsync/Info.plist; sourceTree = "<group>"; };
-		4AADA4054C59FD2D2A0F03AD /* libPods-powersyncreactnativebackgroundsync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-powersyncreactnativebackgroundsync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F2C3DE829525C8C5EC80ED5 /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powersyncreactnativebackgroundsync.debug.xcconfig"; path = "Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync.debug.xcconfig"; sourceTree = "<group>"; };
+		71BFD33205F905B10787C937 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powersyncreactnativebackgroundsync.release.xcconfig"; path = "Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync.release.xcconfig"; sourceTree = "<group>"; };
+		835DFF6A2856A92F59677D0F /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powersyncreactnativebackgroundsync.debug.xcconfig"; path = "Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync.debug.xcconfig"; sourceTree = "<group>"; };
+		8CC59A7178217E7FD760454E /* libPods-powersyncreactnativebackgroundsync.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-powersyncreactnativebackgroundsync.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = powersyncreactnativebackgroundsync/SplashScreen.storyboard; sourceTree = "<group>"; };
-		AE44090BB9E42D9E5627F0F2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = powersyncreactnativebackgroundsync/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		E798ECF48897B9ACD8D1E450 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-powersyncreactnativebackgroundsync/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EEFB5651B920A9E18FA6E2D6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = powersyncreactnativebackgroundsync/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = powersyncreactnativebackgroundsync/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* powersyncreactnativebackgroundsync-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "powersyncreactnativebackgroundsync-Bridging-Header.h"; path = "powersyncreactnativebackgroundsync/powersyncreactnativebackgroundsync-Bridging-Header.h"; sourceTree = "<group>"; };
-		F54659E9A9FFBE31A112A3F3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-powersyncreactnativebackgroundsync/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2260B6C8FA8EDA7221DC597 /* libPods-powersyncreactnativebackgroundsync.a in Frameworks */,
+				F901F17D1F08BF0681DE62ED /* libPods-powersyncreactnativebackgroundsync.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,15 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				AE44090BB9E42D9E5627F0F2 /* PrivacyInfo.xcprivacy */,
-			);
-			name = powersyncreactnativebackgroundsync;
-			sourceTree = "<group>";
-		};
-		1D615952C89C4F9B65A52C46 /* powersyncreactnativebackgroundsync */ = {
-			isa = PBXGroup;
-			children = (
-				F54659E9A9FFBE31A112A3F3 /* ExpoModulesProvider.swift */,
+				EEFB5651B920A9E18FA6E2D6 /* PrivacyInfo.xcprivacy */,
 			);
 			name = powersyncreactnativebackgroundsync;
 			sourceTree = "<group>";
@@ -70,27 +62,17 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				4AADA4054C59FD2D2A0F03AD /* libPods-powersyncreactnativebackgroundsync.a */,
+				8CC59A7178217E7FD760454E /* libPods-powersyncreactnativebackgroundsync.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4FBA410F6BB948F16E3079C0 /* Pods */ = {
+		3DDC71C44474F9C417B7975B /* powersyncreactnativebackgroundsync */ = {
 			isa = PBXGroup;
 			children = (
-				7F2C3DE829525C8C5EC80ED5 /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */,
-				06C560BD797355174D295399 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */,
+				E798ECF48897B9ACD8D1E450 /* ExpoModulesProvider.swift */,
 			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		794CAB318370771415D80B3D /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				1D615952C89C4F9B65A52C46 /* powersyncreactnativebackgroundsync */,
-			);
-			name = ExpoModulesProviders;
+			name = powersyncreactnativebackgroundsync;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -107,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				4FBA410F6BB948F16E3079C0 /* Pods */,
-				794CAB318370771415D80B3D /* ExpoModulesProviders */,
+				9AF39261CB83F2BC6B973880 /* Pods */,
+				A2356B659E0DEA8B6C125378 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -121,6 +103,24 @@
 				13B07F961A680F5B00A75B9A /* powersyncreactnativebackgroundsync.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AF39261CB83F2BC6B973880 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				835DFF6A2856A92F59677D0F /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */,
+				71BFD33205F905B10787C937 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A2356B659E0DEA8B6C125378 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				3DDC71C44474F9C417B7975B /* powersyncreactnativebackgroundsync */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "powersyncreactnativebackgroundsync" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				0038C7B0DEC458715CFBFFC8 /* [Expo] Configure project */,
+				64791A1F23285246DFFBDCDB /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				0155B06C2A11AFA77E512B1F /* [CP] Embed Pods Frameworks */,
+				4C1F63E6249B7DD85E357FC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,7 +166,9 @@
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8W6ZXARSCM;
 						LastSwiftMigration = 1250;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -196,32 +198,13 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				A6BAA1CB27A424B430CA0DFA /* PrivacyInfo.xcprivacy in Resources */,
+				32A3A4FE7A166F85B32D8FFE /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0038C7B0DEC458715CFBFFC8 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-powersyncreactnativebackgroundsync/expo-configure-project.sh\"\n";
-		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -236,26 +219,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
-		};
-		0155B06C2A11AFA77E512B1F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/powersync-sqlite-core/powersync-sqlite-core.framework/powersync-sqlite-core",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/powersync-sqlite-core.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -279,6 +242,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4C1F63E6249B7DD85E357FC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/powersync-sqlite-core/powersync-sqlite-core.framework/powersync-sqlite-core",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/powersync-sqlite-core.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64791A1F23285246DFFBDCDB /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-powersyncreactnativebackgroundsync/expo-configure-project.sh\"\n";
+		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,11 +288,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-powersyncreactnativebackgroundsync/Pods-powersyncreactnativebackgroundsync-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXNotifications/ExpoNotifications_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXTaskManager/ExpoTaskManager_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoSystemUI/ExpoSystemUI_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
@@ -299,11 +305,15 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoApplication_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoNotifications_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoTaskManager_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoSystemUI_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
@@ -323,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				EF3AF2DA4D1C3A88B86DA302 /* ExpoModulesProvider.swift in Sources */,
+				B9439DA7A35AFD6D42623EB2 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,12 +342,15 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F2C3DE829525C8C5EC80ED5 /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */;
+			baseConfigurationReference = 835DFF6A2856A92F59677D0F /* Pods-powersyncreactnativebackgroundsync.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = powersyncreactnativebackgroundsync/powersyncreactnativebackgroundsync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8W6ZXARSCM;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -368,12 +381,15 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06C560BD797355174D295399 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */;
+			baseConfigurationReference = 71BFD33205F905B10787C937 /* Pods-powersyncreactnativebackgroundsync.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = powersyncreactnativebackgroundsync/powersyncreactnativebackgroundsync.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8W6ZXARSCM;
 				INFOPLIST_FILE = powersyncreactnativebackgroundsync/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

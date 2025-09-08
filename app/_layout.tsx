@@ -1,15 +1,13 @@
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { useSystem } from '@/powersync/System';
+import { PowerSyncContext } from '@powersync/react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { PowerSyncContext } from '@powersync/react-native';
-import { useSystem } from '@/powersync/system';
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { SafeAreaView } from 'react-native';
-import * as Notifications from 'expo-notifications';
-import { registerBackgroundTaskAsync, setupNotificationHandler } from '@/powersync/BackgroundSync';
+import 'react-native-reanimated';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -18,29 +16,11 @@ export default function RootLayout() {
   });
   const system = useSystem();
   const db = useMemo(() => {
+    if(!system.powersync.connected){
+      system.init();
+    }
     return system.powersync;
   }, [system]);
-
-  useEffect(() => {
-    // This handler must be set up before any notifications are received.
-    setupNotificationHandler();
-
-    // Register the background fetch task.
-    registerBackgroundTaskAsync();
-
-    // Request notification permissions for iOS.
-    async function requestPermissions() {
-      const { status } = await Notifications.requestPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Notification permissions not granted.');
-        // You might want to display a message to the user here.
-        return;
-      }
-      console.log('Notification permissions granted.');
-    }
-
-    requestPermissions();
-  }, []);
 
   if (!loaded) {
     return null;

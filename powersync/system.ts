@@ -1,5 +1,4 @@
 import React from 'react';
-import { OPSqliteOpenFactory } from '@powersync/op-sqlite';
 import { createBaseLogger, LogLevel, PowerSyncDatabase, SyncClientImplementation } from '@powersync/react-native';
 import { SupabaseConnector } from '@/supabase/SupabaseConnector';
 import { AppSchema } from '@/powersync/AppSchema';
@@ -13,14 +12,13 @@ export class System {
     powersync: PowerSyncDatabase;
 
     constructor() {
-        this.connector = new SupabaseConnector(this);
-        const opSqlite = new OPSqliteOpenFactory({
-            dbFilename: 'powersync55226652.db'
-        });
+        this.connector = new SupabaseConnector();
 
         this.powersync = new PowerSyncDatabase({
             schema: AppSchema,
-            database: opSqlite,
+            database: {
+                dbFilename: 'powersync.db'
+            },
             logger: logger
         });
     }
@@ -31,19 +29,35 @@ export class System {
         await this.powersync.init();
 
         await this.powersync.connect(this.connector, {
-            clientImplementation: SyncClientImplementation.RUST,
+            clientImplementation: SyncClientImplementation.RUST
         });
 
-        const l = this.powersync.registerListener({
-            initialized: () => { },
-            statusChanged: (status) => {
-                console.log('PowerSync status changed:', status);
+        await new Promise<void>((resolve) => {
+            const unregister = this.powersync.registerListener({
+                statusChanged: (status) => {
+                    const hasSynced = Boolean(status.lastSyncedAt);
+                    const downloading = status.dataFlowStatus?.downloading || false;
+                    const uploading = status.dataFlowStatus?.uploading || false;
+                    console.log(
+                        '[PowerSync] Status changed:',
+                        hasSynced ? '✅ Synced' : '⏳ Not yet synced',
+                        downloading ? '📥 Downloading' : '✅ Not downloading',
+                        uploading ? '📤 Uploading' : '✅ Not uploading'
+                    );
 
-                // if (status!.downloadProgress?.downloadedFraction == 1 && status!.dataFlowStatus!.downloading) {
-                //     console.log("Something weird is happening!", JSON.stringify(status, null, 2));
-                // }
-            }
+                    // Resolve when initial sync is complete
+                    if (hasSynced && !uploading) {
+                        console.log('[PowerSync] Sync complete ✅');
+                        resolve();
+                        unregister();
+                    }
+                },
+            });
         });
+    }
+
+    async disconnect() {
+        await this.powersync.disconnect();
     }
 }
 
