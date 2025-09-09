@@ -4,7 +4,7 @@ import { useQuery, useStatus } from '@powersync/react-native';
 import * as TaskManager from "expo-task-manager";
 import React, { useEffect } from 'react';
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { initializeBackgroundTask } from '@/utils';
+import { initializeBackgroundTask } from '@/lib/utils';
 
 TaskManager.getRegisteredTasksAsync().then((tasks) => {
   console.log(tasks.length);

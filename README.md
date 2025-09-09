@@ -6,12 +6,16 @@ Demo app demonstrating background sync using PowerSync, Expo and Supabase.
 
 This demo app uses expo-background-task to run a background task that syncs your PowerSync database in the background. To learn more, see the [Expo Background Task docs](https://docs.expo.dev/versions/latest/sdk/background-task).
 
-## Getting Started
+## Info
 
 Important packages for background sync with PowerSync + Expo:
 
 - `expo-background-task`
 - `axios`
+
+The background sync logic is located in `lib/utils.ts`.
+
+## Getting Started
 
 First, install the dependencies:
 
