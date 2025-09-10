@@ -1,5 +1,5 @@
 import { LIST_TABLE } from "@/powersync/AppSchema";
-import { System } from "@/powersync/System";
+import { System } from "@/powersync/SystemContext";
 import * as BackgroundTask from "expo-background-task";
 import * as TaskManager from "expo-task-manager";
 import { AppState } from "react-native";
