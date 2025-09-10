@@ -1,5 +1,5 @@
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { useSystem } from '@/powersync/System';
+import { useSystem } from '@/powersync/SystemContext';
 import { PowerSyncContext } from '@powersync/react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -16,7 +16,7 @@ export default function RootLayout() {
   });
   const system = useSystem();
   const db = useMemo(() => {
-    if(!system.powersync.connected){
+    if (!system.powersync.connected) {
       system.init();
     }
     return system.powersync;

@@ -1,10 +1,10 @@
+import { initializeBackgroundTask } from '@/lib/utils';
 import { LIST_TABLE, ListRecord } from '@/powersync/AppSchema';
-import { useSystem } from '@/powersync/System';
+import { useSystem } from '@/powersync/SystemContext';
 import { useQuery, useStatus } from '@powersync/react-native';
 import * as TaskManager from "expo-task-manager";
 import React, { useEffect } from 'react';
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { initializeBackgroundTask } from '@/lib/utils';
 
 TaskManager.getRegisteredTasksAsync().then((tasks) => {
   console.log(tasks.length);
