@@ -31,7 +31,7 @@ cp .env .env.local
 
 And then edit `.env.local` to insert your credentials for `Supabase`.
 
-Run on iOS (see [configuring background modes on iOS](https://docs.expo.dev/versions/latest/sdk/task-manager/#configuration))
+### Run on iOS (see [configuring background modes on iOS](https://docs.expo.dev/versions/latest/sdk/task-manager/#configuration))
 
 To enable background tasks on iOS, you need to add the "Background fetch" capability to your app configuration.
 
@@ -55,7 +55,7 @@ then run
 npm run ios
 ```
 
-Run on Android
+### Run on Android
 
 ```sh
 npm run android
@@ -154,7 +154,7 @@ This function `initializeBackgroundTask` sets up automatic background syncing fo
 ### User experience
 
 - When user minimizes your app or switches to another app → background sync is scheduled to start
-- When user returns to your app → background sync stops (since the app can sync normally while in use)
+- When user returns to your app → background sync stops if it is running (since the app can sync normally while in use)
 - User doesn't need to do anything - it's completely automatic
 
 ### Technical details
