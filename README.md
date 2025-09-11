@@ -33,6 +33,24 @@ And then edit `.env.local` to insert your credentials for `Supabase`.
 
 Run on iOS (see [configuring background modes on iOS](https://docs.expo.dev/versions/latest/sdk/task-manager/#configuration))
 
+To enable background tasks on iOS, you need to add the "Background fetch" capability to your app configuration.
+
+Add this to your `app.json` file:
+
+```json
+{
+  "expo": {
+    "ios": {
+      "infoPlist": {
+        "UIBackgroundModes": ["fetch"]
+      }
+    }
+  }
+}
+```
+
+then run
+
 ```sh
 npm run ios
 ```
