@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
-    "@journeyapps/react-native-quick-sqlite": "^2.4.8",
+    "@op-engineering/op-sqlite": "^15.0.3",
+    "@powersync/op-sqlite": "^0.7.8",
     "@powersync/react-native": "^1.23.2",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/bottom-tabs": "^7.3.10",

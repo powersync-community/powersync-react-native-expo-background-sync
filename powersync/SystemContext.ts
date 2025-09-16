@@ -2,6 +2,7 @@ import React from 'react';
 import { createBaseLogger, LogLevel, PowerSyncDatabase, SyncClientImplementation } from '@powersync/react-native';
 import { SupabaseConnector } from '@/supabase/SupabaseConnector';
 import { AppSchema } from '@/powersync/AppSchema';
+import { OPSqliteOpenFactory } from '@powersync/op-sqlite';
 
 const logger = createBaseLogger();
 logger.useDefaults();
@@ -14,11 +15,13 @@ export class System {
     constructor() {
         this.connector = new SupabaseConnector();
 
+        const opSqlite = new OPSqliteOpenFactory({
+            dbFilename: 'powersync.db'
+        });
+
         this.powersync = new PowerSyncDatabase({
             schema: AppSchema,
-            database: {
-                dbFilename: 'powersync.db'
-            },
+            database: opSqlite,
             logger: logger
         });
     }
@@ -32,27 +35,18 @@ export class System {
             clientImplementation: SyncClientImplementation.RUST
         });
 
-        await new Promise<void>((resolve) => {
-            const unregister = this.powersync.registerListener({
-                statusChanged: (status) => {
-                    const hasSynced = Boolean(status.lastSyncedAt);
-                    const downloading = status.dataFlowStatus?.downloading || false;
-                    const uploading = status.dataFlowStatus?.uploading || false;
-                    console.log(
-                        '[PowerSync] Status changed:',
-                        hasSynced ? '✅ Synced' : '⏳ Not yet synced',
-                        downloading ? '📥 Downloading' : '✅ Not downloading',
-                        uploading ? '📤 Uploading' : '✅ Not uploading'
-                    );
-
-                    // Resolve when initial sync is complete
-                    if (hasSynced && !uploading) {
-                        console.log('[PowerSync] Sync complete ✅');
-                        resolve();
-                        unregister();
-                    }
-                },
-            });
+        this.powersync.registerListener({
+            statusChanged: (status) => {
+                const hasSynced = Boolean(status.lastSyncedAt);
+                const downloading = status.dataFlowStatus?.downloading || false;
+                const uploading = status.dataFlowStatus?.uploading || false;
+                console.log(
+                    '[PowerSync] Status changed:',
+                    hasSynced ? '✅ Synced' : '⏳ Not yet synced',
+                    downloading ? '📥 Downloading' : '✅ Not downloading',
+                    uploading ? '📤 Uploading' : '✅ Not uploading'
+                );
+            },
         });
     }
 
