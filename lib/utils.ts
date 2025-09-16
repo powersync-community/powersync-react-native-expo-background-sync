@@ -1,5 +1,8 @@
-import { LIST_TABLE } from "@/powersync/AppSchema";
+import { AppSchema } from "@/powersync/AppSchema";
 import { System } from "@/powersync/SystemContext";
+import { SupabaseConnector } from "@/supabase/SupabaseConnector";
+import { OPSqliteOpenFactory } from "@powersync/op-sqlite";
+import { PowerSyncDatabase, SyncClientImplementation } from "@powersync/react-native";
 import * as BackgroundTask from "expo-background-task";
 import * as TaskManager from "expo-task-manager";
 import { AppState } from "react-native";
@@ -11,16 +14,43 @@ const MINIMUM_INTERVAL = 15;
 TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
   console.log("[Background Task] Background task started");
   try {
-    const system = new System();
-    await system.init();
-    const userId = await system.connector.userId();
+    const connector = new SupabaseConnector();
+    await connector.signInAnonymously();
+
+    console.log('[Background Task] Signed in to Supabase');
+
+    const opSqlite = new OPSqliteOpenFactory({
+      dbFilename: 'powersync.db'
+    });
+
+    const powersync = new PowerSyncDatabase({
+      schema: AppSchema,
+      database: opSqlite,
+    });
+
+    await powersync.connect(connector, {
+      clientImplementation: SyncClientImplementation.RUST
+    });
+
+    console.log('[Background Task] Connected to PowerSync');
+
+    // Wait for first sync to complete to download any new data
+    await powersync.waitForFirstSync();
+
+    console.log('[Background Task] First sync completed');
 
     // Simulate uploading data that was in ps_crud
-    await system.powersync.execute(`
-            INSERT INTO ${LIST_TABLE} (id, name, owner_id)
-            VALUES (uuid(), 'From Inside BG', ?);
-        `, [userId]);
-    console.log('[Background Task] Mock List inserted');
+    await powersync.execute(`
+            INSERT INTO lists (id, name, owner_id)
+            VALUES (uuid(), 'Inside BG Task', ?);
+        `, [await connector.userId()]);
+
+    console.log('[Background Task] Mock List inserted locally');
+
+    // Upload pending data inside upload queue to Supabase
+    await connector.uploadData(powersync);
+
+    console.log('[Background Task] Mock List uploaded to Supabase');
 
     console.log('[Background Task] Background sync task completed');
     return BackgroundTask.BackgroundTaskResult.Success;
