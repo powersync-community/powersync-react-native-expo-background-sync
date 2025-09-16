@@ -39,7 +39,7 @@ TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
 
     console.log('[Background Task] First sync completed');
 
-    // Simulate uploading data that was in ps_crud
+    // Insert mock data to the upload queue
     await powersync.execute(`
             INSERT INTO lists (id, name, owner_id)
             VALUES (uuid(), 'Inside BG Task', ?);

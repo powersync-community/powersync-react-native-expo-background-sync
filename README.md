@@ -107,7 +107,7 @@ Background tasks are not supported on iOS simulators.
 
 ## ⚠️ Please note
 
-The app needs to be in the background for it to run and ultimately, the OS decides when to run background tasks so forcing it to run might not always work immediately. The background task should run on it's own within 20 minutes after the app is put in the background. Testing background sync seems to work better and more consistently on a physical device.
+The app needs to be in the background for it to run and ultimately, the OS decides when to run background tasks so forcing it to run might not always work immediately. The background task should run on it's own within 20 minutes after the app is put in the background. Testing background sync seems to work better and more consistently on a physical device. If you don't see any logs after starting your background task, you may need to watch all the logs on the device using `adb logcat` (on Android).
 
 When the background task starts, you will see the following log:
 
