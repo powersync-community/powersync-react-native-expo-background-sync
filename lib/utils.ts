@@ -1,63 +1,55 @@
-import { AppSchema } from "@/powersync/AppSchema";
-import { System } from "@/powersync/SystemContext";
-import { SupabaseConnector } from "@/supabase/SupabaseConnector";
-import { OPSqliteOpenFactory } from "@powersync/op-sqlite";
-import { PowerSyncDatabase, SyncClientImplementation } from "@powersync/react-native";
+import { LIST_TABLE } from "@/powersync/AppSchema";
 import * as BackgroundTask from "expo-background-task";
 import * as TaskManager from "expo-task-manager";
 import { AppState } from "react-native";
+import { system } from "@/powersync/SystemContext";
 
 const BACKGROUND_SYNC_TASK = "background-powersync-task";
 const MINIMUM_INTERVAL = 15;
 
-// Define the background task
 TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
-  console.log("[Background Task] Background task started");
   try {
-    const connector = new SupabaseConnector();
-    await connector.signInAnonymously();
+    console.log(
+      `[Background Task] Starting background task at ${new Date(Date.now()).toISOString()}`
+    );
 
-    console.log('[Background Task] Signed in to Supabase');
+    await system.powersync.execute(
+      `INSERT INTO ${LIST_TABLE} (id, name, owner_id) VALUES (uuid(), 'From Inside BG', ?)`,
+      [await system.connector.userId()]
+    );
 
-    const opSqlite = new OPSqliteOpenFactory({
-      dbFilename: 'powersync.db'
-    });
+    // Ensure we don't create another connection to PowerSync if it's already connected
+    if (system?.powersync?.connected) return;
 
-    const powersync = new PowerSyncDatabase({
-      schema: AppSchema,
-      database: opSqlite,
-    });
+    console.log("[Background Task] Initializing PowerSync");
 
-    await powersync.connect(connector, {
-      clientImplementation: SyncClientImplementation.RUST
-    });
-
-    console.log('[Background Task] Connected to PowerSync');
+    await system.init();
 
     // Wait for first sync to complete to download any new data
-    await powersync.waitForFirstSync();
+    await new Promise<void>((resolve) => {
+      console.log("[Background Task] Waiting for first sync to complete");
+      const unregister = system.powersync.registerListener({
+        statusChanged: (status) => {
+          const hasSynced = Boolean(status.lastSyncedAt);
+          const downloading = status.dataFlowStatus?.downloading || false;
+          const uploading = status.dataFlowStatus?.uploading || false;
 
-    console.log('[Background Task] First sync completed');
-
-    // Insert mock data to the upload queue
-    await powersync.execute(`
-            INSERT INTO lists (id, name, owner_id)
-            VALUES (uuid(), 'Inside BG Task', ?);
-        `, [await connector.userId()]);
-
-    console.log('[Background Task] Mock List inserted locally');
-
-    // Upload pending data inside upload queue to Supabase
-    await connector.uploadData(powersync);
-
-    console.log('[Background Task] Mock List uploaded to Supabase');
-
-    console.log('[Background Task] Background sync task completed');
-    return BackgroundTask.BackgroundTaskResult.Success;
+          // Resolve when initial sync is complete
+          if (hasSynced && !downloading && !uploading) {
+            console.log(
+              "[Background Task] Download complete"
+            );
+            resolve();
+            unregister();
+          }
+        },
+      });
+    });
   } catch (error) {
-    console.error("[Background Task] Error in background task:", error);
+    console.error("[Background Task] Failed to execute the background task:", error);
     return BackgroundTask.BackgroundTaskResult.Failed;
   }
+  return BackgroundTask.BackgroundTaskResult.Success;
 });
 
 /**
