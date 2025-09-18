@@ -5,21 +5,23 @@ import { AppState } from "react-native";
 import { system } from "@/powersync/SystemContext";
 
 const BACKGROUND_SYNC_TASK = "background-powersync-task";
-const MINIMUM_INTERVAL = 15;
+const MINIMUM_INTERVAL = 15; // Run this task every 15 minutes
 
 TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
   try {
-    console.log(
-      `[Background Task] Starting background task at ${new Date(Date.now()).toISOString()}`
-    );
+    console.log(`[Background Task] Starting background task at ${new Date(Date.now()).toISOString()}`);
 
+    // Ensure we don't create another connection to PowerSync if it's already connected
+    if (system?.powersync?.connected) return;
+
+    // Insert a mock list to simulate a pending transaction in `ps_crud`
     await system.powersync.execute(
       `INSERT INTO ${LIST_TABLE} (id, name, owner_id) VALUES (uuid(), 'From Inside BG', ?)`,
       [await system.connector.userId()]
     );
 
-    // Ensure we don't create another connection to PowerSync if it's already connected
-    if (system?.powersync?.connected) return;
+    // Upload any pending transactions
+    await system.connector.uploadData(system.powersync);
 
     console.log("[Background Task] Initializing PowerSync");
 
@@ -34,7 +36,7 @@ TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
           const downloading = status.dataFlowStatus?.downloading || false;
           const uploading = status.dataFlowStatus?.uploading || false;
 
-          // Resolve when initial sync is complete
+          // Resolve when all operations have been downloaded and pending transactions have been uploaded
           if (hasSynced && !downloading && !uploading) {
             console.log(
               "[Background Task] Download complete"
