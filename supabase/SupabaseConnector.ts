@@ -24,7 +24,7 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
         persistSession: true
       },
       global: {
-        // Override the default fetch function to use expo-fetch
+        // Override the default fetch function to use expo/fetch
         fetch: fetch as any
       }
     });

@@ -63,7 +63,7 @@ npm run android
 
 ## Supabase and background sync
 
-The `SupabaseConnector` has been configured to override the default `fetch` function that the `@supabase/supabase-js` SDK uses. By default, the `fetch` function used does not work in the background [see here](https://github.com/facebook/react-native/issues/47437), so we need to override it with a something that works in the background, like `expo-fetch`.
+The `SupabaseConnector` has been configured to override the default `fetch` function that the `@supabase/supabase-js` SDK uses. By default, the `fetch` function used does not work in the background [see here](https://github.com/facebook/react-native/issues/47437), so we need to override it with a something that works in the background, like `expo/fetch`.
 
 ```typescript
 this.client = createClient(AppConfig.supabaseUrl!, AppConfig.supabaseAnonKey!, {
