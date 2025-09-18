@@ -20,9 +20,6 @@ TaskManager.defineTask(BACKGROUND_SYNC_TASK, async () => {
       [await system.connector.userId()]
     );
 
-    // Upload any pending transactions
-    await system.connector.uploadData(system.powersync);
-
     console.log("[Background Task] Initializing PowerSync");
 
     await system.init();
