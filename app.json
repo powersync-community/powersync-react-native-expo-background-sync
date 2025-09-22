@@ -10,11 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.powersyncreactnativebackgroundsync",
-      "backgroundModes": ["processing"],
-      "infoPlist": {
-        "UIBackgroundModes": ["fetch", "remote-notification"]
-      }
+      "bundleIdentifier": "com.anonymous.powersyncreactnativebackgroundsync"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +20,10 @@
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.powersyncreactnativebackgroundsync",
       "usesCleartextTraffic": true,
-      "permissions": ["WAKE_LOCK", "RECEIVE_BOOT_COMPLETED"]
+      "permissions": [
+        "WAKE_LOCK",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -42,12 +41,7 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      [
-        "expo-notifications",
-        {
-          "enableBackgroundRemoteNotifications": true
-        }
-      ]
+      "expo-background-task"
     ],
     "experiments": {
       "typedRoutes": true

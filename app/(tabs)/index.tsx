@@ -4,7 +4,7 @@ import { useSystem } from '@/powersync/SystemContext';
 import { useQuery, useStatus } from '@powersync/react-native';
 import * as TaskManager from "expo-task-manager";
 import React, { useEffect } from 'react';
-import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 
 TaskManager.getRegisteredTasksAsync().then((tasks) => {
   console.log(tasks.length);
@@ -45,21 +45,6 @@ export default function HomeScreen() {
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
           Lists
         </Text>
-
-        <TouchableOpacity
-          onPress={async () => {
-            await system.powersync.disconnectAndClear();
-          }}
-          style={{
-            backgroundColor: '#007AFF',
-            padding: 15,
-            borderRadius: 8,
-            marginBottom: 20,
-            alignItems: 'center'
-          }}
-        >
-          <Text style={{ color: '#fff', fontWeight: 'bold' }}>Disconnect and Clear</Text>
-        </TouchableOpacity>
 
         {/* Sync Progress Indicator */}
         {status.dataFlowStatus?.downloading && downloadProgress && (
