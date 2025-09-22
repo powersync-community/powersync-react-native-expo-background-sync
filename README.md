@@ -103,17 +103,18 @@ Background tasks are not supported on iOS simulators.
 
 The app needs to be in the background for it to run and ultimately, the OS decides when to run background tasks so forcing it to run might not always work immediately. The background task should run on it's own within 20 minutes after the app is put in the background. Testing background sync seems to work better and more consistently on a physical device. If you don't see any logs after starting your background task, you may need to watch all the logs on the device using `adb logcat` (on Android).
 
-When the background task starts, you will see the following log:
+When the background task starts, you will see the following logs:
 
 ```javascript
-[Background Task] Background task started
+[Background Task] Starting background task at ...
+[Background Task] Initializing PowerSync
 ```
 
-After it has connected to the PowerSync instance, you will see the following logs:
+After it has connected to the PowerSync instance, you will see the following log:
 
 ```javascript
-[Background Task] Mock List inserted
-[Background Task] Background sync task completed
+[Background Task] Download complete
+Finished task 'background-powersync-task' with eventId ...
 ```
 
 At this point, the background task has successfully connected to PowerSync (on a different thread) and inserted a mock list item to simulate pending transactions in the `ps_crud` table. It has not yet uploaded this transaction to the source database.
