@@ -11,7 +11,6 @@ This demo app uses expo-background-task to run a background task that syncs your
 Important packages for background sync with PowerSync + Expo:
 
 - `expo-background-task`
-- `axios`
 
 The background sync logic is located in `lib/utils.ts`.
 
