@@ -25,7 +25,7 @@ npm install
 Set up the Environment variables: Copy the `.env` file:
 
 ```bash
-cp .env .env.local
+cp .env.local.template .env.local
 ```
 
 And then edit `.env.local` to insert your credentials for `Supabase`.
