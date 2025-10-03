@@ -4,7 +4,7 @@
 
 Demo app demonstrating background sync using PowerSync, Expo and Supabase.
 
-This demo app uses expo-background-task to run a background task that syncs your PowerSync database in the background. To learn more, see the [Expo Background Task docs](https://docs.expo.dev/versions/latest/sdk/background-task).
+This demo app uses `expo-background-task` to run a background task that syncs your PowerSync database in the background. To learn more, see the [Expo Background Task docs](https://docs.expo.dev/versions/latest/sdk/background-task).
 
 ## Info
 
@@ -32,7 +32,7 @@ And then edit `.env.local` to insert your credentials for `Supabase`.
 
 ### Run on iOS (see [configuring background modes on iOS](https://docs.expo.dev/versions/latest/sdk/task-manager/#configuration))
 
-To enable background tasks in PowerSync on iOS, you need to add both processing and fetch to the UIBackgroundModes array in your app’s Info.plist (ios/powersyncreactnativebackgroundsync/Info.plist). The fetch mode is required so your app can periodically run background fetches, allowing PowerSync to upload and download data even when the app is not in the foreground:
+To enable background tasks in PowerSync on iOS, you need to add both `processing` and `fetch` to the `UIBackgroundModes` array in your app’s `Info.plist` (`ios/powersyncreactnativebackgroundsync/Info.plist`). The `fetch` mode is required so your app can periodically run background fetches, allowing PowerSync to upload and download data even when the app is not in the foreground:
 
 ```xml
 <key>UIBackgroundModes</key>
@@ -42,7 +42,7 @@ To enable background tasks in PowerSync on iOS, you need to add both processing 
 </array>
 ```
 
-then run
+Then run:
 
 ```sh
 npm run ios
@@ -56,7 +56,7 @@ npm run android
 
 ## Supabase and background sync
 
-The `SupabaseConnector` has been configured to override the default `fetch` function that the `@supabase/supabase-js` SDK uses. By default, the `fetch` function used does not work in the background [see here](https://github.com/facebook/react-native/issues/47437), so we need to override it with a something that works in the background, like `expo/fetch`.
+The `SupabaseConnector` has been configured to override the default `fetch` function that the `@supabase/supabase-js` SDK uses. By default, the `fetch` function used does not work in the background ([see here](https://github.com/facebook/react-native/issues/47437)), so we need to override it with a something that works in the background, like `expo/fetch`.
 
 ```typescript
 this.client = createClient(AppConfig.supabaseUrl!, AppConfig.supabaseAnonKey!, {
@@ -100,18 +100,18 @@ Background tasks are not supported on iOS simulators.
 
 ## ⚠️ Please note
 
-The app needs to be in the background for it to run and ultimately, the OS decides when to run background tasks so forcing it to run might not always work immediately. The background task should run on it's own within 20 minutes after the app is put in the background. Testing background sync seems to work better and more consistently on a physical device. If you don't see any logs after starting your background task, you may need to watch all the logs on the device using `adb logcat` (on Android).
+The app needs to be in the background for it to run and ultimately, the OS decides when to run background tasks, so forcing it to run might not always work immediately. The background task should run on its own within 20 minutes after the app is put in the background. Testing background sync seems to work better and more consistently on a physical device. If you don't see any logs after starting your background task, you may need to watch all the logs on the device using `adb logcat` (on Android).
 
 When the background task starts, you will see the following logs:
 
-```javascript
+```
 [Background Task] Starting background task at ...
 [Background Task] Initializing PowerSync
 ```
 
 After it has connected to the PowerSync instance, you will see the following log:
 
-```javascript
+```
 [Background Task] Download complete
 Finished task 'background-powersync-task' with eventId ...
 ```
@@ -120,7 +120,7 @@ At this point, the background task has successfully connected to PowerSync (on a
 
 After a couple of minutes, you will see the following logs:
 
-```javascript
+```
 Could not apply checkpoint due to local data. Will retry at completed upload or next checkpoint.
 
 Could not apply pending checkpoint even after completed upload
@@ -143,12 +143,12 @@ This function `initializeBackgroundTask` sets up automatic background syncing fo
 
 ### Why this approach
 
-- Prevents conflicts - Avoids having multiple PowerSync connections (on different threads). When a task is unregistered, the connection to PowerSync is closed.
+- Prevents conflicts: Avoids having multiple PowerSync connections (on different threads). When a task is unregistered, the connection to PowerSync is closed.
 
 ### User experience
 
-- When user minimizes your app or switches to another app → background sync is scheduled to start
-- When user returns to your app → background sync stops if it is running (since the app can sync normally while in use)
+- When the user minimizes your app or switches to another app → background sync is scheduled to start
+- When the user returns to your app → background sync stops if it is running (since the app can sync normally while in use)
 - User doesn't need to do anything - it's completely automatic
 
 ### Technical details
