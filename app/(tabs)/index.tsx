@@ -22,7 +22,6 @@ const promise = new Promise<void>((resolve) => {
 initializeBackgroundTask(promise);
 
 export default function HomeScreen() {
-  const system = useSystem();
   const status = useStatus();
 
   useEffect(() => {
@@ -42,8 +41,8 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 20 }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
-          Lists
+        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20, marginTop: 20 }}>
+          List count: {listRecords.length}
         </Text>
 
         {/* Sync Progress Indicator */}
